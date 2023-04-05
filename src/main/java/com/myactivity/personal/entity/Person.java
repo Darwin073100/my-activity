@@ -1,7 +1,10 @@
 package com.myactivity.personal.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -20,6 +23,9 @@ public class Person {
     private LocalDate birthDate;
     private Character sex;
 
+    //@OneToMany
+    //@JsonManagedReference
+    //private List<Activity> activities;
     public Integer getId() {
         return id;
     }
