@@ -8,10 +8,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "person_id")
+    private Integer personId;
     @Column(name = "user_name")
     private String userName;
     @Column(name = "user_password")
     private String userPassword;
+
+    @OneToOne
+    @JoinColumn(name = "person_id", insertable = false, updatable = false)
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public Integer getId() {
         return id;
@@ -19,6 +33,14 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
     }
 
     public String getUserName() {

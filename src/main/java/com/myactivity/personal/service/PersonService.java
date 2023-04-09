@@ -5,7 +5,6 @@ import com.myactivity.personal.entity.Person;
 import com.myactivity.personal.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +19,7 @@ public class PersonService implements PersonRepository {
      */
     @Override
     public List<Person> findAll() {
-        return crud.findAll();
+        return (List<Person>) crud.findAll();
     }
 
     /**
@@ -29,7 +28,7 @@ public class PersonService implements PersonRepository {
      */
     @Override
     public Optional<Person> findById(int id) {
-        return Optional.empty();
+        return (Optional<Person>) crud.findById(id);
     }
 
     /**
@@ -37,8 +36,8 @@ public class PersonService implements PersonRepository {
      * @return
      */
     @Override
-    public Optional<Person> save(Person person) {
-        return Optional.empty();
+    public Person save(Person person) {
+        return  crud.save(person);
     }
 
     /**
@@ -47,8 +46,9 @@ public class PersonService implements PersonRepository {
      * @return
      */
     @Override
-    public Optional<Person> update(int id, Person person) {
-        return Optional.empty();
+    public Person update(int id, Person person) {
+        person.setId(id);
+        return crud.saveAndFlush(person);
     }
 
     /**
@@ -57,6 +57,9 @@ public class PersonService implements PersonRepository {
      */
     @Override
     public Boolean delete(int id) {
-        return null;
+        return crud.findById(id).map(item ->{
+            crud.deleteById(id);
+            return true;
+        }).orElse(false);
     }
 }

@@ -10,6 +10,20 @@ public class Hobby {
     private Integer id;
     private String title;
     private String description;
+    @Column(name = "person_id")
+    private Integer personId;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", insertable = false, updatable = false)
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public Integer getId() {
         return id;
@@ -33,5 +47,13 @@ public class Hobby {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
     }
 }

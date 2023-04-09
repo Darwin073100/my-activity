@@ -1,7 +1,10 @@
 package com.myactivity.personal.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -10,11 +13,25 @@ public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "person_id")
+    private Integer personId;
     @Column(length = 100)
     private String title;
     private String description;
-    private LocalDate date;
-    private LocalTime time;
+    @Column(nullable = false)
+    private LocalDateTime date;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", insertable = false, updatable = false)
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public Integer getId() {
         return id;
@@ -22,6 +39,14 @@ public class Activity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
     }
 
     public String getTitle() {
@@ -40,19 +65,12 @@ public class Activity {
         this.description = description;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
 }

@@ -8,11 +8,25 @@ public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "person_id")
+    private Integer personId;
     private String uri;
     @Column(nullable = false)
     private Byte file;
     @Column(nullable = false)
     private String extension;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", insertable = false, updatable = false)
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public Integer getId() {
         return id;
@@ -20,6 +34,14 @@ public class Picture {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
     }
 
     public String getUri() {

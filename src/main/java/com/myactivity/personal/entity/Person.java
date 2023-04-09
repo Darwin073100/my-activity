@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,16 +17,27 @@ public class Person {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    private Long edad;
+    private Long age;
     @Column(unique = true)
     private String email;
     @Column(name = "birth_date")
     private LocalDate birthDate;
     private Character sex;
 
-    //@OneToMany
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@OneToMany(mappedBy = "person")
     //@JsonManagedReference
-    //private List<Activity> activities;
+    private List<Activity> activities;
+
+    @OneToMany(mappedBy = "person")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "person")
+    private List<Hobby> hobbies;
+
+    @OneToOne(mappedBy = "person")
+    private User user;
+
     public Integer getId() {
         return id;
     }
@@ -50,12 +62,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Long getEdad() {
-        return edad;
+    public Long getAge() {
+        return age;
     }
 
-    public void setEdad(Long edad) {
-        this.edad = edad;
+    public void setAge(Long age) {
+        this.age = age;
     }
 
     public String getEmail() {

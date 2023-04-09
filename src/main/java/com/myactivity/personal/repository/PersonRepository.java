@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface PersonRepository {
     List<Person> findAll();
     Optional<Person> findById(int id);
-    Optional<Person> save(Person person);
-    Optional<Person> update(int id, Person person);
+    Person save(Person person);
+    Person update(int id, Person person);
     Boolean delete(int id);
 }
