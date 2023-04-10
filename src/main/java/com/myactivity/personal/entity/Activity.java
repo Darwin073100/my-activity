@@ -1,11 +1,10 @@
 package com.myactivity.personal.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "activity")
@@ -23,7 +22,11 @@ public class Activity {
 
     @ManyToOne
     @JoinColumn(name = "person_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Person person;
+
+    @OneToMany(mappedBy = "activity")
+    private List<Comment> comments;
 
     public Person getPerson() {
         return person;

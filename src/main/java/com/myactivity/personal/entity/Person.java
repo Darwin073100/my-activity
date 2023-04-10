@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,9 +23,8 @@ public class Person {
     private LocalDate birthDate;
     private Character sex;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@OneToMany(mappedBy = "person")
-    //@JsonManagedReference
+    @OneToMany(mappedBy = "person")
+    @JsonManagedReference
     private List<Activity> activities;
 
     @OneToMany(mappedBy = "person")

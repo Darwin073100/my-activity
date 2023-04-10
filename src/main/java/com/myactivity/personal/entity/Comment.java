@@ -12,9 +12,24 @@ public class Comment {
     @Column(name = "person_id")
     private Integer personId;
 
+    @Column(name = "activity_id")
+    private Integer activityId;
+
     @ManyToOne
     @JoinColumn(name = "person_id", insertable = false, updatable = false)
     private Person person;
+
+    @ManyToOne
+    @JoinColumn(name = "activity_id", insertable = false, updatable = false)
+    private Activity activity;
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
 
     public Person getPerson() {
         return person;
@@ -46,5 +61,13 @@ public class Comment {
 
     public void setPersonId(Integer personId) {
         this.personId = personId;
+    }
+
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 }
