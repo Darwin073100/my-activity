@@ -4,10 +4,11 @@ import com.myactivity.personal.crud.HobbyCrud;
 import com.myactivity.personal.entity.Hobby;
 import com.myactivity.personal.repository.HobbyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class HobbyService implements HobbyRepository {
 
     @Autowired

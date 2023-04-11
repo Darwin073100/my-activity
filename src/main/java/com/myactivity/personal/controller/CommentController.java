@@ -1,7 +1,6 @@
 package com.myactivity.personal.controller;
-
-import com.myactivity.personal.entity.Activity;
-import com.myactivity.personal.service.ActivityService;
+import com.myactivity.personal.entity.Comment;
+import com.myactivity.personal.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,29 +10,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/activity")
-public class ActivityController {
+@RequestMapping("/comment")
+public class CommentController {
     @Autowired
-    private ActivityService service;
+    private CommentService service;
 
     @GetMapping
-    public ResponseEntity<List<Activity>> findAll(){
+    public ResponseEntity<List<Comment>> findAll(){
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Activity>> findById(@PathVariable int id){
+    public ResponseEntity<Optional<Comment>> findById(@PathVariable int id){
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Activity> save(@RequestBody Activity activity){
-        return  new ResponseEntity<>(service.save(activity), HttpStatus.CREATED);
+    public ResponseEntity<Comment> save(@RequestBody Comment comment){
+        return  new ResponseEntity<>(service.save(comment), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Activity> update(@PathVariable int id, @RequestBody Activity activity){
-        return new ResponseEntity<>(service.update(id, activity), HttpStatus.OK);
+    public ResponseEntity<Comment> update(@PathVariable int id, @RequestBody Comment comment){
+        return new ResponseEntity<>(service.update(id, comment), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

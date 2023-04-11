@@ -1,7 +1,7 @@
 package com.myactivity.personal.controller;
 
-import com.myactivity.personal.entity.Activity;
-import com.myactivity.personal.service.ActivityService;
+import com.myactivity.personal.entity.Picture;
+import com.myactivity.personal.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,29 +11,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/activity")
-public class ActivityController {
+@RequestMapping("/picture")
+public class PictureController {
     @Autowired
-    private ActivityService service;
+    private PictureService service;
 
     @GetMapping
-    public ResponseEntity<List<Activity>> findAll(){
+    public ResponseEntity<List<Picture>> findAll(){
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Activity>> findById(@PathVariable int id){
+    public ResponseEntity<Optional<Picture>> findById(@PathVariable int id){
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Activity> save(@RequestBody Activity activity){
-        return  new ResponseEntity<>(service.save(activity), HttpStatus.CREATED);
+    public ResponseEntity<Picture> save(@RequestBody Picture picture){
+        return  new ResponseEntity<>(service.save(picture), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Activity> update(@PathVariable int id, @RequestBody Activity activity){
-        return new ResponseEntity<>(service.update(id, activity), HttpStatus.OK);
+    public ResponseEntity<Picture> update(@PathVariable int id, @RequestBody Picture picture){
+        return new ResponseEntity<>(service.update(id, picture), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

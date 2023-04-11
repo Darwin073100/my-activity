@@ -1,7 +1,7 @@
 package com.myactivity.personal.controller;
 
-import com.myactivity.personal.entity.Activity;
-import com.myactivity.personal.service.ActivityService;
+import com.myactivity.personal.entity.Hobby;
+import com.myactivity.personal.service.HobbyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,29 +11,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/activity")
-public class ActivityController {
+@RequestMapping("/hobby")
+public class HobbyController {
     @Autowired
-    private ActivityService service;
+    private HobbyService service;
 
     @GetMapping
-    public ResponseEntity<List<Activity>> findAll(){
+    public ResponseEntity<List<Hobby>> findAll(){
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Activity>> findById(@PathVariable int id){
+    public ResponseEntity<Optional<Hobby>> findById(@PathVariable int id){
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Activity> save(@RequestBody Activity activity){
-        return  new ResponseEntity<>(service.save(activity), HttpStatus.CREATED);
+    public ResponseEntity<Hobby> save(@RequestBody Hobby hobby){
+        return  new ResponseEntity<>(service.save(hobby), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Activity> update(@PathVariable int id, @RequestBody Activity activity){
-        return new ResponseEntity<>(service.update(id, activity), HttpStatus.OK);
+    public ResponseEntity<Hobby> update(@PathVariable int id, @RequestBody Hobby hobby){
+        return new ResponseEntity<>(service.update(id, hobby), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

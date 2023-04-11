@@ -1,7 +1,7 @@
 package com.myactivity.personal.controller;
 
-import com.myactivity.personal.entity.Activity;
-import com.myactivity.personal.service.ActivityService;
+import com.myactivity.personal.entity.User;
+import com.myactivity.personal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,29 +11,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/activity")
-public class ActivityController {
+@RequestMapping("user")
+public class UserController {
     @Autowired
-    private ActivityService service;
+    private UserService service;
 
     @GetMapping
-    public ResponseEntity<List<Activity>> findAll(){
+    public ResponseEntity<List<User>> findAll(){
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Activity>> findById(@PathVariable int id){
+    public ResponseEntity<Optional<User>> findById(@PathVariable int id){
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Activity> save(@RequestBody Activity activity){
-        return  new ResponseEntity<>(service.save(activity), HttpStatus.CREATED);
+    public ResponseEntity<User> save(@RequestBody User user){
+        return  new ResponseEntity<>(service.save(user), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Activity> update(@PathVariable int id, @RequestBody Activity activity){
-        return new ResponseEntity<>(service.update(id, activity), HttpStatus.OK);
+    public ResponseEntity<User> update(@PathVariable int id, @RequestBody User user){
+        return new ResponseEntity<>(service.update(id, user), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
