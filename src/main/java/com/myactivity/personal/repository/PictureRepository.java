@@ -11,4 +11,5 @@ public interface PictureRepository {
     Optional<Picture> findById(int id);
     Picture save(Picture picture);
     Picture update(int id, Picture picture);
+    Boolean delete(int id);
 }

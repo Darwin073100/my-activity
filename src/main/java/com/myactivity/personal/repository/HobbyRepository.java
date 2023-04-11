@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface HobbyRepository {
     List<Hobby> findAll();
-    Optional<Hobby> findById();
+    Optional<Hobby> findById(int id);
     Hobby save (Hobby hobby);
     Hobby update(int id, Hobby hobby);
     Boolean delete(int id);
