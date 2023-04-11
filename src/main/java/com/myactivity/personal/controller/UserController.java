@@ -23,7 +23,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> findById(@PathVariable int id){
-        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+        return service.findById(id).map(item ->{
+            return new ResponseEntity<>(item, HttpStatus.OK);
+        }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
