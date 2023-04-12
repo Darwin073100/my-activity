@@ -1,4 +1,4 @@
-package com.myactivity.personal.service;
+package com.myactivity.personal.security.authService;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
